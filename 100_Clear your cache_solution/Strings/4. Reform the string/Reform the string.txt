@@ -1,0 +1,28 @@
+class Solution{
+public String reformat(String s) {
+        List<Character> chars = new ArrayList();
+        List<Character> digits = new ArrayList();
+        for(char c : s.toCharArray()) {
+            if(c >= '0' && c <= '9') {
+                digits.add(c);
+            } else {
+                chars.add(c);
+            }
+        }
+        if(Math.abs(digits.size() - chars.size()) > 1) return "";
+        boolean isDigit = digits.size() > chars.size();
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++) {
+            if(isDigit) {
+                sb.append(digits.remove(0));
+            } else {
+                sb.append(chars.remove(0));
+            }
+            isDigit = !isDigit;
+        }
+        return sb.toString();
+    }
+}
+
+// Time complexity = O(n)
+// Space complexity = O(n)

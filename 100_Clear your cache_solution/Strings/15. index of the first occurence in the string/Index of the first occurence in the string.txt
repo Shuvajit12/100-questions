@@ -1,0 +1,8 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+         return haystack.indexOf(needle);
+    }
+}
+
+// Time complexity = O(1)
+// Space complexity = O(1)

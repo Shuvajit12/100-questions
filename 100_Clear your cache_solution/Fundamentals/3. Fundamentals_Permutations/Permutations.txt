@@ -1,0 +1,26 @@
+class Solution {   
+public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> answer = new ArrayList<>();
+        List<Integer> datas = new ArrayList<>();
+        boolean[] freq = new boolean[nums.length];
+        fun(nums, datas,answer, freq);
+        return answer;
+    }
+    public void fun(int[] nums,List<Integer> datas,List<List<Integer>> answer,boolean[] freq){
+        if(datas.size()==nums.length){
+            answer.add(new ArrayList<>(datas));
+            return ;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(!freq[i]){
+                freq[i] = true;
+                datas.add(nums[i]);
+                fun(nums, datas,answer, freq);
+                datas.remove(datas.size()-1);
+                freq[i] = false;
+            }
+        }
+    }
+}
+//time complexity= O(n)
+//Space complexity= O(n)

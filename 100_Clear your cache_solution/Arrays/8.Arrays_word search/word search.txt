@@ -1,0 +1,38 @@
+class Solution {
+    boolean[][] visited = null;
+    public boolean exist(char[][] board, String word) {
+        visited = new boolean[board.length][board[0].length];
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                if(board[i][j] == word.charAt(0)){
+                    if(search(board, i, j, word, 0)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean search(char[][] mat, int i, int j, String word, int index) {
+        if(index == word.length()){
+            return true;
+        }
+        if(i < 0 || j<0 ||i>=mat.length || j>=mat[0].length) {
+            return false;
+        }
+        if(visited[i][j]){
+            return false;
+        }
+        visited[i][j] = true;
+        boolean ans = false;
+        if(mat[i][j] == word.charAt(index)) {
+            ans = ans || search(mat, i+1, j, word, index+1) || search(mat, i, j+1, word, index+1) || search(mat, i-1, j, word, index+1) || search(mat, i, j-1, word, index+1);
+        }
+        visited[i][j] = false;
+        return ans;
+    }
+}
+
+//time complexity= O(n2)
+//Space complexity= O(n)

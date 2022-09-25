@@ -1,0 +1,35 @@
+class Solution {
+    List<String> res;
+    public List<String> letterCombinations(String digits) {
+        res = new ArrayList<>();
+        if(digits.length() == 0) {
+          return res;
+        }
+        HashMap<Character, char[]> map = new HashMap<>();
+        map.put('2' , new char[]{'a','b','c'});
+        map.put('3' , new char[]{'d','e','f'});
+        map.put('4' , new char[]{'g','h','i'});
+        map.put('5' , new char[]{'j','k','l'});
+        map.put('6' , new char[]{'m','n','o'});
+        map.put('7' , new char[]{'p','q','r','s'});
+        map.put('8' , new char[]{'t','u','v'});
+        map.put('9' , new char[]{'w','x','y','z'});
+        String curr = "";
+        addLetters(digits, map, curr, 0, 0);
+        return res;
+    }
+     
+    public void addLetters(String digits,  HashMap<Character, char[]> map, String curr, int index , int idx) {
+       if (curr.length() == digits.length()) {
+            res.add(curr);
+            return;
+        }
+        char [] arr = map.get(digits.charAt(idx));
+        for(int i = 0; i < arr.length; i++) {
+          addLetters(digits, map, curr+arr[i], i, idx+1);
+        }
+    }
+}
+
+// Time complexity = O(n)
+// Space complexity = O(1)

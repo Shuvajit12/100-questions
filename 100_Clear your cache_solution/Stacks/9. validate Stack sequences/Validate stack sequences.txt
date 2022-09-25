@@ -1,0 +1,29 @@
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        int i = 0, j = 0;
+        Stack<Integer> st = new Stack<>();
+        while(i < pushed.length || j < popped.length){
+ 
+            if(i == pushed.length && st.peek() != popped[j])
+                return false;
+            while(j < popped.length && !st.isEmpty() && st.peek() == popped[j])
+            {
+                st.pop();
+                j++;
+            }
+			
+            while(i < pushed.length){
+                st.push(pushed[i]);
+                i++;
+
+                if(st.peek() == popped[j])
+                    break;
+            }
+        }
+        return st.isEmpty();
+        
+    }
+}
+
+// Time complexity = O(n)
+// Space complexity = O(1)

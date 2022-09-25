@@ -1,0 +1,22 @@
+class Solution {
+    public String removeStars(String s) {
+        char c[] = s.toCharArray();
+        Stack<Character> st = new Stack<>();
+        for(char c1 : c){
+            if(c1 != '*'){
+                st.push(c1);
+            }
+            if(!st.isEmpty() && c1 == '*'){
+                st.pop();
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+        return sb.reverse().toString();
+    }
+}
+
+// Time complexity = O(n)
+// Space complexity = O(n)

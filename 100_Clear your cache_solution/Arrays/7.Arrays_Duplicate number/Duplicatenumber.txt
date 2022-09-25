@@ -1,0 +1,15 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+		Map<Integer, Boolean> map = new HashMap();
+		for(int i=0; i<nums.length; i++) {
+		   if(map.putIfAbsent(nums[i], true) != null) {
+			   return true;
+		   }
+	   }
+        
+	   return false;
+   }
+}
+
+//Time complexity= O(n)
+//Space complexity= O(1)

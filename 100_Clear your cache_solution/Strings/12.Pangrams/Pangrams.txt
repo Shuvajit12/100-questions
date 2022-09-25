@@ -1,0 +1,22 @@
+public static String pangrams(String s) {
+    // Write your code here
+    HashSet<Integer>sEt=new HashSet<>();
+    String string=s.toLowerCase();
+    string=string.replaceAll("\\s","");
+    for(int i=0;i<string.length();i++)
+    {
+        int num=(int)string.charAt(i);
+        sEt.add(num);
+    }
+    if(sEt.size()==26)
+    return "pangram";
+    else
+    return "not pangram";
+
+    }
+
+}
+
+
+//Time complexity = O(n)
+// Space complexity = O(1)

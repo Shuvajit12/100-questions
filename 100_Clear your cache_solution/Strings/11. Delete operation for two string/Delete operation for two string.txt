@@ -1,0 +1,40 @@
+class Solution {
+
+public int helper(String s1 , String s2 , int i , int j , int[][]dp){
+    
+    if(i < 0 || j < 0){
+        return 0;
+    }
+    
+    if(dp[i][j] != -1){
+        return dp[i][j];
+    }
+    
+    if(s1.charAt(i) == s2.charAt(j)){
+        
+        return dp[i][j] = helper(s1  ,s2 , i-1 , j-1 ,dp)+1;
+    }
+    
+    else{
+        return dp[i][j] = Math.max(helper(s1 , s2 , i-1 , j ,dp) , helper(s1 , s2 , i , j-1 , dp));
+    }
+}
+
+public int minDistance(String word1, String word2) {
+    
+    int i = word1.length();
+    int j = word2.length();
+    
+    int[][]dp = new int[i+1][j+1];
+    for(int[]a : dp){
+        Arrays.fill(a , -1);
+    }
+    
+    int res = helper(word1 , word2 , i-1 , j-1 , dp);
+    
+    return i-res+j-res;
+}
+}
+
+// Time complexity = O(1)
+// Space complexity = O(n)

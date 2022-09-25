@@ -1,0 +1,41 @@
+
+public class Solution {
+    public static boolean isValid(String s) {
+    Stack<Character>stack=new Stack<>();
+    for(char c:s.toCharArray()){
+        if(c=='(' || c=='{' || c=='['){
+            stack.push(c);
+        }
+        else if(c==')'){
+            char t=stack.pop();
+            if(t !='('){
+                return false;
+            }
+            }
+         else if(c=='}'){
+            char t=stack.pop();
+             if(t !='{'){
+                return false;
+            } 
+        }
+         else if(c==']'){
+            char t=stack.pop();
+          if(t !='['){
+                return false;
+            } 
+       
+    }
+   
+    }
+    
+        if(stack.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
+ 
+// Time complexity = O(n)
+// Space complexity = o(n)
